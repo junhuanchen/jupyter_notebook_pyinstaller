@@ -1,4 +1,4 @@
-#!//usr/bin/env python3
+#!/usr/bin/env python3
 from logging import getLogger
 
 logger = getLogger(__name__)  # you can use other name
