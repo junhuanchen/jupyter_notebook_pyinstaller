@@ -10,19 +10,28 @@ def jupyter_notebook(arglist):
     cmd_args = []
     all_args = arglist
     for index, arg in enumerate(all_args):
-        if arg == "kernel":
+        if arg == "ipykernel_launcher":
             mode = "kernel"
             pass
         else:
             cmd_args.append(arg)
 
     if mode == "kernel":  # run iPython kernel with passed ops
-        args = ["kernel"]
+        args = ["ipykernel_launcher"]
         args.extend(cmd_args)
         # This does not want argv[0]
         logger.info("ipython kernel argv: %s", str(args))
-        from IPython import start_ipython
-        start_ipython(argv=args)
+        # from IPython import start_ipython
+        # start_ipython(argv=args)
+
+        # Remove the CWD from sys.path while we load stuff.
+        # This is added back by InteractiveShellApp.init_path()
+        import sys
+        if sys.path[0] == '':
+            del sys.path[0]
+
+        from ipykernel import kernelapp as app
+        app.launch_new_instance()
     else:  # Run IPython Notebook with passed ops
         import sys
         from os.path import realpath
@@ -30,11 +39,6 @@ def jupyter_notebook(arglist):
         me = realpath(sys.argv[0])
         logger.debug("Using %s as binary", me)
         args = []
-        args.extend(["--notebook-dir=" + getcwd(),
-                     # If this is being run as a subcommand, be sure to insert it here, below example is for subcommand notebook
-                     # and also using argparse, note the -- to terminate argument parsing
-                     # "--KernelManager.kernel_cmd=['"+me+"', 'notebook', 'kernel', '--', '-f', '{connection_file}']"])
-                     "--KernelManager.kernel_cmd=['" + me + "', 'kernel', '-f', '{connection_file}']"])
         args.extend(all_args)
         logger.info("notebook argv: %s", str(args))
         from notebook import notebookapp
