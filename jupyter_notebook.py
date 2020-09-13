@@ -45,7 +45,6 @@ def jupyter_notebook(arglist):
         notebookapp.launch_new_instance(argv=args)
     return True
 
-
 if __name__ == "__main__":
     import sys
     from logging import basicConfig, DEBUG
