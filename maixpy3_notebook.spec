@@ -19,6 +19,9 @@ hidden.append('pandas')
 hidden.append('matplotlib')
 # Required for IPython kernel
 hidden.append('ipykernel.datapub')
+# Required for rpyc_ikernel
+hidden.append('rpyc_ikernel')
+
 print("Hidden modules: ",hidden)
 
 exclude = [] # ['settings']

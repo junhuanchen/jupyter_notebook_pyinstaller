@@ -1,10 +1,22 @@
 #!/usr/bin/env python3
 from logging import getLogger
 
+import ipykernel_launcher
+import IPython.parallel
+import rpyc_ikernel
+
+from debugpy import _vendored
+from debugpy._vendored import pydevd
+
+# print(_vendored, pydevd, ipykernel_launcher)
+
 logger = getLogger(__name__)  # you can use other name
 
 def jupyter_notebook(arglist):
     logger.info("epmt_notebook: %s", str(arglist))
+
+    if len(arglist) > 1 and '-m' == arglist[1]:
+        arglist.remove('-m')
 
     mode = None
     cmd_args = []
@@ -20,6 +32,7 @@ def jupyter_notebook(arglist):
         args = ["ipykernel_launcher"]
         args.extend(cmd_args)
         # This does not want argv[0]
+        
         logger.info("ipython kernel argv: %s", str(args))
         # from IPython import start_ipython
         # start_ipython(argv=args)
