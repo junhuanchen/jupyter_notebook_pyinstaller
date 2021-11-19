@@ -4,6 +4,9 @@ from logging import getLogger
 import ipykernel_launcher
 import IPython.parallel
 import rpyc_ikernel
+import requests
+import PIL
+import sys
 
 # from debugpy import _vendored
 # from debugpy._vendored import pydevd
