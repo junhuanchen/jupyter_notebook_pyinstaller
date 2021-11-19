@@ -36,7 +36,7 @@ for f in files:
     ipe_extra_datas.append((f, '.'))
 print("Extra data: ",ipe_extra_datas)
 
-a = Analysis(['jupyter_notebook.py'],
+a = Analysis(['maixpy3_notebook.py'],
              binaries=[],
              datas=ipe_extra_datas,
              hiddenimports=hidden,
@@ -53,7 +53,7 @@ exe = EXE(pyz,
           a.scripts,
           [],
           exclude_binaries=True,
-          name='jupyter_notebook',
+          name='maixpy3_notebook',
           debug=False,
           bootloader_ignore_signals=False,
           upx=True,
@@ -64,4 +64,4 @@ coll = COLLECT(exe,
                a.datas,
                upx=True,
                upx_exclude=[],
-               name='jupyter_notebook')
+               name='maixpy3_notebook')
