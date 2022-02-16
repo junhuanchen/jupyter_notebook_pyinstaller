@@ -7,6 +7,7 @@ import rpyc_ikernel
 import requests
 import PIL
 import sys
+import numpy
 
 # from debugpy import _vendored
 # from debugpy._vendored import pydevd
