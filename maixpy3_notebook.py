@@ -9,6 +9,20 @@ import PIL
 import sys
 import numpy
 
+from rpyc_ikernel.adb import adb
+
+def config_maixpy3():
+    from threading import Thread
+    import time
+    def tmp():
+        while True:
+            global adb
+            print(adb, adb.connect_check())
+            time.sleep(1)
+    t = Thread(target=tmp,args=())
+    t.setDaemon(True)
+    t.start()
+
 # from debugpy import _vendored
 # from debugpy._vendored import pydevd
 
@@ -66,6 +80,7 @@ def jupyter_notebook(arglist):
         import sys
         from os.path import realpath
         from os import getcwd
+        config_maixpy3()
         me = realpath(sys.argv[0])
         logger.debug("Using %s as binary", me)
         args = []
