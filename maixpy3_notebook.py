@@ -9,15 +9,17 @@ import PIL
 import sys
 import numpy
 
-from rpyc_ikernel.adb import adb
+from rpyc_ikernel.adb import bind_rpycs, adb
+
 
 def config_maixpy3():
     from threading import Thread
-    import time
+    import time, os
     def tmp():
         while True:
             global adb
-            print(adb, adb.connect_check())
+            print(os.getcwd(), adb.get_adb_path(), adb.connect_check())
+            bind_rpycs()
             time.sleep(1)
     t = Thread(target=tmp,args=())
     t.setDaemon(True)
