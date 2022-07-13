@@ -11,6 +11,7 @@ Please contact m.mitchell@biometix.com or support@biometix.com with any question
 
 # Requirements
 
+* pip install pyinstaller==4.7
 * Python 3.6 or greater
 * pipenv is required, can be installed with pip install pipenv
 * virtualenv == 16.2.0
